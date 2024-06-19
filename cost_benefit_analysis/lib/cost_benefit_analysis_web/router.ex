@@ -15,15 +15,19 @@ defmodule CostBenefitAnalysisWeb.Router do
   end
 
   scope "/", CostBenefitAnalysisWeb do
-    pipe_through :browser
+    # pipe_through :browser
 
-    get "/", PageController, :home
+    pipe_through :api
+
+    get "/", PageController, :ping
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CostBenefitAnalysisWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", CostBenefitAnalysisWeb do
+    pipe_through :api
+
+    # get "/", PageController, :ping
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:cost_benefit_analysis, :dev_routes) do

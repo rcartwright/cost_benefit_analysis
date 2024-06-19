@@ -39,8 +39,7 @@ defmodule CostBenefitAnalysisWeb do
   def controller do
     quote do
       use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: CostBenefitAnalysisWeb.Layouts]
+        formats: [:json]
 
       import Plug.Conn
       import CostBenefitAnalysisWeb.Gettext

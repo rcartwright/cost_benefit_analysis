@@ -18,7 +18,7 @@ defmodule CostBenefitAnalysisWeb.FallbackController do
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> put_view(html: CostBenefitAnalysisWeb.ErrorHTML, json: CostBenefitAnalysisWeb.ErrorJSON)
+    |> put_view(json: CostBenefitAnalysisWeb.ErrorJSON)
     |> render(:"404")
   end
 end
