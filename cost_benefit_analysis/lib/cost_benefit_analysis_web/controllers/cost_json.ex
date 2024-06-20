@@ -1,5 +1,5 @@
 defmodule CostBenefitAnalysisWeb.CostJSON do
-  alias CostBenefitAnalysis.Analysis.Cost
+  alias CostBenefitAnalysis.Analyses.Cost
 
   @doc """
   Renders a list of costs.
@@ -19,7 +19,7 @@ defmodule CostBenefitAnalysisWeb.CostJSON do
     %{
       id: cost.id,
       description: cost.description,
-      amount: cost.amount
+      weight: cost.weight
     }
   end
 end

@@ -1,10 +1,10 @@
-defmodule CostBenefitAnalysis.Repo.Migrations.CreateCosts do
+defmodule CostBenefitAnalysis.Repo.Migrations.CreateAnalyses do
   use Ecto.Migration
 
   def change do
-    create table(:costs) do
+    create table(:analyses) do
+      add :name, :string
       add :description, :string
-      add :weight, :float
 
       timestamps(type: :utc_datetime)
     end

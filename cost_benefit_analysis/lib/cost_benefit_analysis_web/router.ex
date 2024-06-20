@@ -26,7 +26,11 @@ defmodule CostBenefitAnalysisWeb.Router do
   scope "/api", CostBenefitAnalysisWeb do
     pipe_through :api
 
-    # get "/", PageController, :ping
+    get "/", PageController, :ping
+
+    resources "/costs", CostController, except: [:new, :edit]
+    resources "/benefits", BenefitController, except: [:new, :edit]
+    resources "/analyses", AnalysisController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

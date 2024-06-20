@@ -1,8 +1,8 @@
-defmodule CostBenefitAnalysis.Repo.Migrations.CreateCosts do
+defmodule CostBenefitAnalysis.Repo.Migrations.CreateBenefits do
   use Ecto.Migration
 
   def change do
-    create table(:costs) do
+    create table(:benefits) do
       add :description, :string
       add :weight, :float
 

@@ -58,4 +58,60 @@ defmodule CostBenefitAnalysis.AnalysisTest do
       assert %Ecto.Changeset{} = Analysis.change_cost(cost)
     end
   end
+
+  describe "benefits" do
+    alias CostBenefitAnalysis.Analysis.Benefit
+
+    import CostBenefitAnalysis.AnalysisFixtures
+
+    @invalid_attrs %{description: nil, weight: nil}
+
+    test "list_benefits/0 returns all benefits" do
+      benefit = benefit_fixture()
+      assert Analysis.list_benefits() == [benefit]
+    end
+
+    test "get_benefit!/1 returns the benefit with given id" do
+      benefit = benefit_fixture()
+      assert Analysis.get_benefit!(benefit.id) == benefit
+    end
+
+    test "create_benefit/1 with valid data creates a benefit" do
+      valid_attrs = %{description: "some description", weight: 120.5}
+
+      assert {:ok, %Benefit{} = benefit} = Analysis.create_benefit(valid_attrs)
+      assert benefit.description == "some description"
+      assert benefit.weight == 120.5
+    end
+
+    test "create_benefit/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Analysis.create_benefit(@invalid_attrs)
+    end
+
+    test "update_benefit/2 with valid data updates the benefit" do
+      benefit = benefit_fixture()
+      update_attrs = %{description: "some updated description", weight: 456.7}
+
+      assert {:ok, %Benefit{} = benefit} = Analysis.update_benefit(benefit, update_attrs)
+      assert benefit.description == "some updated description"
+      assert benefit.weight == 456.7
+    end
+
+    test "update_benefit/2 with invalid data returns error changeset" do
+      benefit = benefit_fixture()
+      assert {:error, %Ecto.Changeset{}} = Analysis.update_benefit(benefit, @invalid_attrs)
+      assert benefit == Analysis.get_benefit!(benefit.id)
+    end
+
+    test "delete_benefit/1 deletes the benefit" do
+      benefit = benefit_fixture()
+      assert {:ok, %Benefit{}} = Analysis.delete_benefit(benefit)
+      assert_raise Ecto.NoResultsError, fn -> Analysis.get_benefit!(benefit.id) end
+    end
+
+    test "change_benefit/1 returns a benefit changeset" do
+      benefit = benefit_fixture()
+      assert %Ecto.Changeset{} = Analysis.change_benefit(benefit)
+    end
+  end
 end

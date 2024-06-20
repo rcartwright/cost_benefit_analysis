@@ -1,10 +1,10 @@
-defmodule CostBenefitAnalysis.Analysis.Cost do
+defmodule CostBenefitAnalysis.Analyses.Cost do
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "costs" do
-    field :amount, :float
     field :description, :string
+    field :weight, :float
 
     timestamps(type: :utc_datetime)
   end
@@ -12,7 +12,7 @@ defmodule CostBenefitAnalysis.Analysis.Cost do
   @doc false
   def changeset(cost, attrs) do
     cost
-    |> cast(attrs, [:description, :amount])
-    |> validate_required([:description, :amount])
+    |> cast(attrs, [:description, :weight])
+    |> validate_required([:description, :weight])
   end
 end

@@ -18,4 +18,19 @@ defmodule CostBenefitAnalysis.AnalysisFixtures do
 
     cost
   end
+
+  @doc """
+  Generate a benefit.
+  """
+  def benefit_fixture(attrs \\ %{}) do
+    {:ok, benefit} =
+      attrs
+      |> Enum.into(%{
+        description: "some description",
+        weight: 120.5
+      })
+      |> CostBenefitAnalysis.Analysis.create_benefit()
+
+    benefit
+  end
 end
