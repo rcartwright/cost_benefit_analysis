@@ -1,10 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ColumnBox } from './components/ColumnBox'
 import './App.css'
 
 function App() {
-  const data = useState([])
+  const [items, setItems] = useState([])
 
+  useEffect(() => {
+    try {
+      async function fetchData() {
+        const response = await fetch('http://localhost:4000/api/analyses')
+        const data = await response.json()
+        console.log("data: ", data)
+        
+        setItems(data)
+      }
+
+      fetchData()
+    } catch (error) {
+      console.log("error: ", error)
+    }
+  }, [])
 
   const costData = [
       {
