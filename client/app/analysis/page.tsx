@@ -1,7 +1,11 @@
 "use client"
 import {ColumnBox} from "../components/ColumnBox";
+const { useState } = require("react");
 
 export default function Analysis() {
+    const data = useState([])
+
+
     const costData = [
         {
             details: "away from family",
