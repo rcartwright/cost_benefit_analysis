@@ -6,6 +6,8 @@ defmodule CostBenefitAnalysis.Analyses.Benefit do
     field :description, :string
     field :weight, :float
 
+    belongs_to :analysis, CostBenefitAnalysis.Analyses.Analysis
+
     timestamps(type: :utc_datetime)
   end
 

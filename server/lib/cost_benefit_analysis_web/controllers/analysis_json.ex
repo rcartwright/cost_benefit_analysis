@@ -19,7 +19,9 @@ defmodule CostBenefitAnalysisWeb.AnalysisJSON do
     %{
       id: analysis.id,
       name: analysis.name,
-      description: analysis.description
+      description: analysis.description,
+      costs: analysis.costs,
+      benefits: analysis.benefits
     }
   end
 end

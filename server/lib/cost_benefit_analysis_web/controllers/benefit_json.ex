@@ -1,6 +1,7 @@
 defmodule CostBenefitAnalysisWeb.BenefitJSON do
   alias CostBenefitAnalysis.Analyses.Benefit
 
+
   @doc """
   Renders a list of benefits.
   """

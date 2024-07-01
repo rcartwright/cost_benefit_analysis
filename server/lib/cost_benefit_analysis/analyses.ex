@@ -18,7 +18,7 @@ defmodule CostBenefitAnalysis.Analyses do
 
   """
   def list_analyses do
-    Repo.all(Analysis)
+    Repo.all(Analysis) |> Repo.preload([:costs, :benefits])
   end
 
   @doc """
