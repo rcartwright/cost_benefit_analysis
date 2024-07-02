@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import { ColumnBox } from './components/ColumnBox'
 import './App.css'
+import { Analysis } from './types'
+
+
 
 function App() {
-  const [items, setItems] = useState([])
+  // const [analyses, setAnalyses]: [Array<Analysis>, React.Dispatch<React.SetStateAction<Array<Analysis>>>] = useState<Array<Analysis>>([]);
+  const [analysis, setAnalysis]: [Analysis, React.Dispatch<React.SetStateAction<Analysis>>] = useState<Analysis>({} as Analysis);
 
   useEffect(() => {
     try {
@@ -12,7 +16,8 @@ function App() {
         const data = await response.json()
         console.log("data: ", data)
         
-        setItems(data)
+        // selecting the first analysis for now
+        setAnalysis(data.data[0])
       }
 
       fetchData()
@@ -62,6 +67,11 @@ function App() {
           weight: 60
       }
   ];
+
+  console.log("analysis.costs: ", analysis.costs)
+  console.log("analysis.benefits", analysis.benefits)
+
+
   return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
           <div className="flex flex-col items-center w-full">
@@ -75,12 +85,12 @@ function App() {
               <div className="flex w-full">
                   <ColumnBox 
                       title="Costs" 
-                      items={costData} 
+                      items={analysis.costs} 
                       classes="bg-danger-light text-danger-dark" 
                   />
                   <ColumnBox 
                       title="Benefits" 
-                      items={benefitData} 
+                      items={analysis.benefits} 
                       classes="bg-success-light text-success-dark" 
                   />
               </div>

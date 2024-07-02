@@ -1,3 +1,5 @@
+import { Item } from "../types";
+
 
 
 export const ColumnBox = ({
@@ -6,10 +8,11 @@ export const ColumnBox = ({
     classes
 }: Readonly<{
     title: string;
-    items: { details: string; weight: number }[];
+    items: Item[];
     classes?: string
 }>) => {
     console.log("items: ", items);
+    console.log("title: ", title)
     return (
         <div className="w-full">
             <h1 className={`text-xl font-bold p-4 ${classes}`}>{title}</h1>
