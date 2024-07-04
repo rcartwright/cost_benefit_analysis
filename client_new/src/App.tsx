@@ -1,76 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { ColumnBox } from './components/ColumnBox'
 import './App.css'
-import { Analysis } from './types'
-
-
+import { Data } from './types'
+import { fetchAnalyses } from './api'
 
 function App() {
-  // const [analyses, setAnalyses]: [Array<Analysis>, React.Dispatch<React.SetStateAction<Array<Analysis>>>] = useState<Array<Analysis>>([]);
-  const [analysis, setAnalysis]: [Analysis, React.Dispatch<React.SetStateAction<Analysis>>] = useState<Analysis>({} as Analysis);
+  const { isPending, isError, data, error } = useQuery<Data, Error>({ queryKey: ['fetch-analyses'], queryFn: fetchAnalyses })
 
-  useEffect(() => {
-    try {
-      async function fetchData() {
-        const response = await fetch('/api/analyses')
-        const data = await response.json()
-        console.log("data: ", data)
-        
-        // selecting the first analysis for now
-        setAnalysis(data.data[0])
-      }
+  if (isPending) {
+    return <span>Loading...</span>
+  }
 
-      fetchData()
-    } catch (error) {
-      console.log("error: ", error)
-    }
-  }, [])
+  if (isError) {
+    return <span>Error: {error.message}</span>
+  }
 
-  const costData = [
-      {
-          details: "away from family",
-          weight: 90
-      },
-      {
-          details: "no thunderstorms or tornadoes",
-          weight: 20
-      },
-      {
-          details: "no green grass",
-          weight: 80
-      },
-      {
-          details: "no trees",
-          weight: 60
-      },
-      {
-          details: "no humidity - yes, I like humidity",
-          weight: 30
-      }
-  ];
-
-  const benefitData = [
-      {
-          details: "around pretty mountains",
-          weight: 30
-      },
-      {
-          details: "will have a band",
-          weight: 20
-      },
-      {
-          details: "a new place",
-          weight: 80
-      },
-      {
-          details: "no winter",
-          weight: 60
-      }
-  ];
-
-  console.log("analysis.costs: ", analysis.costs)
-  console.log("analysis.benefits", analysis.benefits)
-
+  const [analysis] = data?.data
 
   return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -80,7 +25,7 @@ function App() {
                   
               </div>
               <div className="p-4 w-full flex flex-col items-center justify-center bg-slate-400 text-slate-800">
-                  <div className="text-2xl">Move to Las Vegas</div>
+                  <div className="text-2xl">{analysis.name}</div>
               </div>
               <div className="flex w-full">
                   <ColumnBox 

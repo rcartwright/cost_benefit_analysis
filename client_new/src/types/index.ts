@@ -1,5 +1,5 @@
 export interface Item {
-  details: string;
+  description: string;
   weight: number;
 }
 
@@ -8,4 +8,8 @@ export interface Analysis {
   name: string;
   costs: Item[];
   benefits: Item[];
+}
+
+export type Data = {
+  data: Analysis[]
 }
