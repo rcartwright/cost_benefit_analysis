@@ -20,8 +20,25 @@ defmodule CostBenefitAnalysisWeb.AnalysisJSON do
       id: analysis.id,
       name: analysis.name,
       description: analysis.description,
-      costs: analysis.costs,
-      benefits: analysis.benefits
+      costs: Enum.map(analysis.costs, &cost_to_json/1),
+      benefits: Enum.map(analysis.benefits, &benefit_to_json/1)
+    }
+  end
+
+
+  defp cost_to_json(cost) do
+    %{
+      id: cost.id,
+      weight: cost.weight,
+      description: cost.description
+    }
+  end
+
+  defp benefit_to_json(benefit) do
+    %{
+      id: benefit.id,
+      weight: benefit.weight,
+      description: benefit.description
     }
   end
 end
