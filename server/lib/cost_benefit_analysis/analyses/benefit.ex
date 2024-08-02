@@ -14,7 +14,7 @@ defmodule CostBenefitAnalysis.Analyses.Benefit do
   @doc false
   def changeset(benefit, attrs) do
     benefit
-    |> cast(attrs, [:description, :weight])
-    |> validate_required([:description, :weight])
+    |> cast(attrs, [:description, :weight, :analysis_id])
+    |> validate_required([:description, :weight, :analysis_id])
   end
 end
