@@ -17,7 +17,7 @@ function Index() {
     }
   
     if (isError) {
-      return <span>Error: {error.message}</span>
+      return <span>There has been an error. Please try again later.</span>
     }
   
     const [analysis] = data?.data
