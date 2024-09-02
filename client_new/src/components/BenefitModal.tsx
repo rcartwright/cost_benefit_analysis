@@ -12,27 +12,24 @@ export function NewBenefit({isOpen, onClose}: {isOpen: boolean, onClose: () => v
   const queryClient = useQueryClient()
 
   const mutation = useMutation({
-    mutationFn: createBenefit,
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['benefits'] });
-      onClose();
-    },
-  });
+      mutationFn: createBenefit,
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ['fetch-analyses'] })
+        onClose()
+      },
+    })
     
   const form = useForm({
-    defaultValues: {
-      description: '',
-      weight: 1,
-    },
-    onSubmit: (values) => {
-      mutation.mutate({
-        ...values,
-        analysis_id: 2,
-      });
-    },
-  });
-
+      // setting a default of analysis id of 2 since creation of analyses is not yet implemented
+      defaultValues: { description: '', weight: 1, analysisId: 2 },
+      onSubmit: ({ value }) =>
+        mutation.mutate({
+          description: value.description,
+          weight: Number(value.weight),
+          analysis_id: value.analysisId
+        }),
+    })
 
   return (
     <Modal
@@ -44,6 +41,7 @@ export function NewBenefit({isOpen, onClose}: {isOpen: boolean, onClose: () => v
         <form.Subscribe
           selector={(state) => [state.isSubmitting]}
           children={([isSubmitting]) => {
+            console.log('isSubmitting: ', isSubmitting)
             return (
             <Button colorScheme="blue" mr={3} onClick={() => form.handleSubmit()} isLoading={isSubmitting}>
               Save

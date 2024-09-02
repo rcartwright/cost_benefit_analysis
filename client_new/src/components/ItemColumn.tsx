@@ -11,7 +11,7 @@ export const ItemColumn = ({
     name: string;
     items: Item[];
     classes?: string,
-    itemModal: (onClose: () => void, isOpen: boolean) => JSX.Element
+    itemModal?: (onClose: () => void, isOpen: boolean) => JSX.Element
 }>) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -29,7 +29,7 @@ export const ItemColumn = ({
                     </li>
                 ))}
             </ul>
-            {itemModal(onClose, isOpen)}
+            {itemModal && itemModal(onClose, isOpen)}
         </div>
     );
 }

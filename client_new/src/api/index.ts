@@ -6,11 +6,17 @@ export async function fetchAnalyses() : Promise<Data> {
   if (!response.ok) {
     throw new Error('Network response was not ok')
   } 
-  return response.json()
+  const data = await response.json()
+
+  if (!response.ok) {
+    // todo log error
+    throw new Error('Network response was not ok')
+  } 
+
+  return data
 }
 
 export async function createBenefit(body: any) : Promise<any> {
-  console.log('the body', body)
   const response = await fetch('/api/benefits', {
     body: JSON.stringify({benefit: body}), 
     method: 'POST',
@@ -18,10 +24,13 @@ export async function createBenefit(body: any) : Promise<any> {
       "Content-Type": "application/json",
     },
   })
+  
+  const data = await response.json()
 
   if (!response.ok) {
+    // todo log error
     throw new Error('Network response was not ok')
   } 
-  console.log('the respoonse', response.json())
-  return response.json()
+
+  return data
 }

@@ -6,7 +6,7 @@ const ItemForm = ({ form } : {form: any}) => {
     <form>
       <form.Field
         name="description"
-        children={(field) => (
+        children={(field: any) => (
           <FormControl>
             <FormLabel>Description</FormLabel>
             <Input
@@ -20,7 +20,7 @@ const ItemForm = ({ form } : {form: any}) => {
       />
       <form.Field
         name="weight"
-        children={(field) => (
+        children={(field: any) => (
           <FormControl>
             <FormLabel>Weight</FormLabel>
             <Input
@@ -36,6 +36,5 @@ const ItemForm = ({ form } : {form: any}) => {
     </form>
   )
 }
-
 
 export default ItemForm

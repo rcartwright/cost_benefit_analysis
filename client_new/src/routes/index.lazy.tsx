@@ -37,7 +37,6 @@ function Index() {
                         name="Cost" 
                         items={analysis.costs} 
                         classes="bg-danger-light text-danger-dark"
-                        itemModal={(onClose, isOpen) => <NewBenefit onClose={onClose} isOpen={isOpen} />}
                     />
                     <ItemColumn
                         name="Benefit" 
