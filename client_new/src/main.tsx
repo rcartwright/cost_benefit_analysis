@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-query'
 
 import App from './App.tsx'
+import { ChakraProvider } from '@chakra-ui/react'
 import './index.css'
 
 import { RouterProvider, createRouter } from '@tanstack/react-router'
@@ -34,7 +35,9 @@ if (!rootElement.innerHTML) {
   root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
     </QueryClientProvider>
   </React.StrictMode>,
   )
