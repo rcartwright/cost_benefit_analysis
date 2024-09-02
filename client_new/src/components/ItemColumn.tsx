@@ -1,30 +1,26 @@
-import { useState } from "react";
 import { Button } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react';
 import { Item } from "../types";
-import Modal from '../components/Modal';
 
-
-export const ColumnBox = ({
+export const ItemColumn = ({
     name,
     items,
     classes,
-    modalContent,
-    onSave
+    itemModal
 }: Readonly<{
     name: string;
     items: Item[];
     classes?: string,
-    modalContent?: React.ReactNode,
-    onSave?: () => void
+    itemModal: (onClose: () => void, isOpen: boolean) => JSX.Element
 }>) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
         <div className="w-full">
-            <h1 className={`text-xl font-bold p-4 ${classes}`}>{name}s <Button onClick={() => setIsModalOpen(true)} className="ml-4">Add</Button> </h1>
+            <h1 className={`text-xl font-bold p-4 ${classes}`}>{name}s <Button onClick={onOpen} className="ml-4">Add</Button> </h1>
             <ul className="flex flex-col gap-4 border p-8 list-disc bg-slate-50 h-full">
-                {items?.length && items.map((item) => (
-                    <li className="flex items-center" key={item.description}>
+                {items?.length && items.map((item, index) => (
+                    <li className="flex items-center" key={`${item.description}-${index}`}>
                         {item.description} 
                         <div className="ml-4 border w-40 h-3 bg-white">
                             <div style={{width: `${item.weight}%`}} className="p-1 flex items-center justify-center h-full bg-slate-500 text-white text-bold text-xs" />
@@ -33,13 +29,7 @@ export const ColumnBox = ({
                     </li>
                 ))}
             </ul>
-            <Modal 
-              isOpen={isModalOpen} 
-              onClose={() => setIsModalOpen(false)} 
-              title={`Add ${name}`} 
-              content={modalContent}
-              onSave={onSave}
-            />
+            {itemModal(onClose, isOpen)}
         </div>
     );
 }

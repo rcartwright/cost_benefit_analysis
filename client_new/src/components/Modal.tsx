@@ -7,18 +7,17 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
 } from '@chakra-ui/react';
 
 interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
   title: string;
   content: React.ReactNode;
-  onSave?: () => void;
+  footer: React.ReactNode;
+  onClose: () => void;
+  isOpen: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, onSave }) => {
+const Modal: React.FC<ModalProps> = ({ title, content, footer, isOpen, onClose }) => {
   return (
     <ChakraModal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -29,9 +28,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, onSave }
           {content}
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onSave}>
-            Save
-          </Button>
+          {footer}
         </ModalFooter>
       </ModalContent>
     </ChakraModal>

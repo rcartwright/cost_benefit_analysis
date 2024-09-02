@@ -1,10 +1,10 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { ColumnBox } from '../components/ColumnBox'
+import { ItemColumn } from '../components/ItemColumn'
 import '../App.css'
 import { Data } from '../types'
 import { fetchAnalyses } from '../api'
-import { NewBenefit } from '../routes/benefits/new'
+import { NewBenefit } from '../components/BenefitModal'
  
 export const Route = createLazyFileRoute('/')({
   component: Index,
@@ -33,17 +33,17 @@ function Index() {
                     <div className="text-2xl">{analysis.name}</div>
                 </div>
                 <div className="flex w-full">
-                    <ColumnBox 
+                    <ItemColumn 
                         name="Cost" 
                         items={analysis.costs} 
                         classes="bg-danger-light text-danger-dark"
-                        modalContent={<NewBenefit/>}
-                        onSave={() => console.log("saved")}
+                        itemModal={(onClose, isOpen) => <NewBenefit onClose={onClose} isOpen={isOpen} />}
                     />
-                    <ColumnBox 
+                    <ItemColumn
                         name="Benefit" 
                         items={analysis.benefits} 
                         classes="bg-success-light text-success-dark"
+                        itemModal={(onClose, isOpen) => <NewBenefit onClose={onClose} isOpen={isOpen} />}
                     />
                 </div>
             </div>

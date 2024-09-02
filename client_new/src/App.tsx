@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { ColumnBox } from './components/ColumnBox'
+import { ItemColumn } from './components/ItemColumn'
 import './App.css'
 import { Data } from './types'
 import { fetchAnalyses } from './api'
@@ -28,16 +28,7 @@ function App() {
                   <div className="text-2xl">{analysis.name}</div>
               </div>
               <div className="flex w-full">
-                  <ColumnBox 
-                      title="Costs" 
-                      items={analysis.costs} 
-                      classes="bg-danger-light text-danger-dark" 
-                  />
-                  <ColumnBox 
-                      title="Benefits" 
-                      items={analysis.benefits} 
-                      classes="bg-success-light text-success-dark" 
-                  />
+                  hey
               </div>
           </div>
       </main>
