@@ -1,18 +1,27 @@
+import { useState } from "react";
+import { Button } from '@chakra-ui/react'
 import { Item } from "../types";
+import Modal from '../components/Modal';
 
 
 export const ColumnBox = ({
-    title,
+    name,
     items,
-    classes
+    classes,
+    modalContent,
+    onSave
 }: Readonly<{
-    title: string;
+    name: string;
     items: Item[];
-    classes?: string
+    classes?: string,
+    modalContent?: React.ReactNode,
+    onSave?: () => void
 }>) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <div className="w-full">
-            <h1 className={`text-xl font-bold p-4 ${classes}`}>{title}</h1>
+            <h1 className={`text-xl font-bold p-4 ${classes}`}>{name}s <Button onClick={() => setIsModalOpen(true)} className="ml-4">Add</Button> </h1>
             <ul className="flex flex-col gap-4 border p-8 list-disc bg-slate-50 h-full">
                 {items?.length && items.map((item) => (
                     <li className="flex items-center" key={item.description}>
@@ -24,7 +33,13 @@ export const ColumnBox = ({
                     </li>
                 ))}
             </ul>
+            <Modal 
+              isOpen={isModalOpen} 
+              onClose={() => setIsModalOpen(false)} 
+              title={`Add ${name}`} 
+              content={modalContent}
+              onSave={onSave}
+            />
         </div>
-    
     );
 }
