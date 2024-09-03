@@ -8,7 +8,7 @@ Overview
 
 * * * * *
 
-Welcome to the **Cost Benefit Analysis App**! This application allows you to be able to analyze the costs and benefits of decisions/strategies/plans, etc. The app is built using modern web technologies including React, TypeScript, Vite, @tanstack/react-query, @tanstack/react-form, @tanstack/react-router, and Chakra UI, along with a backend powered by Elixir and Phoenix, and data persistence using PostgreSQL.
+Welcome to the **Cost Benefit Analysis App**! This application allows you to be able to analyze the costs and benefits of decisions/strategies/plans, etc. The app is built using modern web technologies including **React**, **TypeScript**, **Vite**, **@tanstack/react-query**, **@tanstack/react-form**, **@tanstack/react-router**, and **Chakra UI**, along with a backend powered by **Elixir** and **Phoenix**, and data persistence using **PostgreSQL**.
 
 Table of Contents
 -----------------
