@@ -23,7 +23,7 @@ export const ItemColumn = ({
                     <li className="flex items-center" key={`${item.description}-${index}`}>
                         {item.description} 
                         <div className="ml-4 border w-40 h-3 bg-white">
-                            <div style={{width: `${item.weight}%`}} className="p-1 flex items-center justify-center h-full bg-slate-500 text-white text-bold text-xs" />
+                            <div style={{width: `${item.weight * 10}%`}} className="p-1 flex items-center justify-center h-full bg-slate-500 text-white text-bold text-xs" />
                         </div>
                         <div className="pl-4">{item.weight}</div>
                     </li>
