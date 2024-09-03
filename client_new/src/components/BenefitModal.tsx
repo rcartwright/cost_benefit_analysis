@@ -41,7 +41,6 @@ export function NewBenefit({isOpen, onClose}: {isOpen: boolean, onClose: () => v
         <form.Subscribe
           selector={(state) => [state.isSubmitting]}
           children={([isSubmitting]) => {
-            console.log('isSubmitting: ', isSubmitting)
             return (
             <Button colorScheme="blue" mr={3} onClick={() => form.handleSubmit()} isLoading={isSubmitting}>
               Save
