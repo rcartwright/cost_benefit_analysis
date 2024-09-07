@@ -13,3 +13,9 @@ export interface Analysis {
 export type Data = {
   data: Analysis[]
 }
+
+export type AlertProps = {
+  title?: string;
+  description?: string;
+  status?: 'info' | 'warning' | 'success' | 'error';
+} | null;

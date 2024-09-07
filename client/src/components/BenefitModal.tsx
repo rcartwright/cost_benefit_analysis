@@ -8,16 +8,12 @@ import { createBenefit } from '../api/index'
 import Modal from './Modal';
 import ItemForm from './ItemForm';
 import FlashMessage from './FlashMessage'
+import { AlertProps } from '../types'
 
 
 export function NewBenefit({isOpen, onClose}: {isOpen: boolean, onClose: () => void}) {
   const queryClient = useQueryClient()
-  const [flash, setFlash] = 
-    useState<{title: string, description: string, status: 'info' | 'warning' | 'success' | 'error' | ''}>({
-      title: '',
-      description: '',
-      status: '',
-    });
+  const [flash, setFlash] = useState<AlertProps>(null);
 
   const mutation = useMutation({
       mutationFn: createBenefit,
@@ -58,7 +54,7 @@ export function NewBenefit({isOpen, onClose}: {isOpen: boolean, onClose: () => v
       title={`Add ${name}`} 
       content={
         <>
-          <FlashMessage {...flash} />
+         {flash && <FlashMessage {...flash} />}
           <ItemForm form={form} />
         </>
     }
